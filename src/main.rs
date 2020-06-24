@@ -10,6 +10,14 @@ fn largest<T: PartialOrd>(list: &[T]) -> &T {
     largest
 }
 
+fn longest<'a, 'b, 'c>(x: &'a str, y: &'b str, result: &'c mut String) {
+    if x.len() > y.len() {
+        *result = (*x).to_string();
+    } else {
+        *result = (*y).to_string();
+    }
+}
+
 fn main() {
     let number_list = vec![34, 50, 25, 100, 65];
 
@@ -20,4 +28,12 @@ fn main() {
 
     let largest_char = largest(&char_list);
     println!("The largest char is {}", largest_char);
+	
+	let string1 = String::from("long string is long");
+	let mut result = String::new();
+    {
+        let string2 = String::from("xyz");
+        longest(string1.as_str(), string2.as_str(), &mut result);
+    }
+    println!("The longest string is {}", result);
 }
